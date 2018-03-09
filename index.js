@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
   getHashQuery() {
     const result = {}
     const query = window.location.hash.split('?')[1]
