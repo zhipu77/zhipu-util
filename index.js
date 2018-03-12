@@ -40,7 +40,14 @@ module.exports = {
     for (var key in kv) {
       searchStr += `${key}=${kv[key]}&`
     }
-    
-    return searchStr.substr(0, searchStr.length - 1)
+
+    return {
+      search: searchStr.substr(0, searchStr.length - 1),
+      href: window.location.protocol + '//' +
+        window.location.host +
+        window.location.pathname +
+        searchStr.substr(0, searchStr.length - 1) +
+        window.location.hash
+    }
   }
 }
