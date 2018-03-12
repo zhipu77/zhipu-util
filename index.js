@@ -23,5 +23,24 @@ module.exports = {
       })
     }
     return result
+  },
+
+  updateSearchQuery(kv) {
+    let searchStr = '?';
+    const search = window.location.search.replace('?', '')
+    if (search) {
+      const temp = search.split('&')
+      temp.forEach(ele => {
+        kv[ele.split('=')[0]] ?
+          null :
+          kv[ele.split('=')[0]] = ele.split('=')[1]
+      })
+    }
+
+    for (var key in kv) {
+      searchStr += `${key}=${kv[key]}&`
+    }
+    
+    return searchStr.substr(0, searchStr.length - 1)
   }
 }
