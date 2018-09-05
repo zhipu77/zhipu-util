@@ -24,7 +24,7 @@ module.exports = {
     }
     return result
   },
-  
+
   updateSearchQuery(kv) {
     let searchStr = '?';
     const search = window.location.search.replace('?', '')
@@ -49,5 +49,17 @@ module.exports = {
         searchStr.substr(0, searchStr.length - 1) +
         window.location.hash
     }
+  },
+
+  getCookie(name) {
+    const match = document.cookie.match(new RegExp(`(^|;\\s*)(${name})=([^;]*)`));
+    return (match ? decodeURIComponent(match[3]) : null);
+  },
+
+  setCookie(c_name, value, expiredays) {
+    const exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = c_name + '=' + escape(value) +
+      ((expiredays === null) ? '' : ';expires=' + exdate.toGMTString());
   }
 }
